@@ -36,16 +36,16 @@ public class Player {
 
     public void createPieces(){
         for(int i = 0; i< pawns.length; i++){
-            pawns[i] = new Pawn("<html>"+ name + "<br> Pawn</html>");
+            pawns[i] = new Pawn(name, "pawn");
         }
-        rooks[0] = new Rook("<html>"+ name + "<br> Rook</html>");
-        rooks[1] = new Rook("<html>"+ name + "<br> Rook</html>");
-        knights[0] = new Knight("<html>"+ name + "<br> Knight</html>");
-        knights[1] = new Knight("<html>"+ name + "<br> Knight</html>");
-        bishops[0] = new Bishop("<html>"+ name + "<br> Bishop</html>");
-        bishops[1] = new Bishop("<html>"+ name + "<br> Bishop</html>");
-        queen = new Queen("<html>"+ name + "<br> Queen</html>");
-        king = new King("<html>"+ name + "<br> King</html>");
+        rooks[0] = new Rook(name, "rook");
+        rooks[1] = new Rook(name, "rook");
+        knights[0] = new Knight(name, "knight");
+        knights[1] = new Knight(name, "knight");
+        bishops[0] = new Bishop(name, "bishop");
+        bishops[1] = new Bishop(name, "bishop");
+        queen = new Queen(name, "queen");
+        king = new King(name, "king");
     }
 
     public Pawn[] getPawns() {

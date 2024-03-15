@@ -1,6 +1,6 @@
 public class King extends Piece{
 
-    public King(String name) {
-        super(name);
+    public King(String playerName, String name) {
+        super(playerName, name);
     }
 }

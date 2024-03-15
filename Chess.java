@@ -4,15 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Chess {
-    private JFrame window;
-    private JPanel board;
-    private Square[][] squares = new Square[8][8];
+    private final JPanel board;
+    private final Square[][] squares = new Square[8][8];
     private Player player;
-    private Player white;
-    private Player black;
+    private final Player w;
+    private final Player b;
 
     public Chess(){
-        window = new JFrame("Chess");
+        JFrame window = new JFrame("Chess");
         window.setSize(800,800);
         window.setResizable(false);
         window.setLocationRelativeTo(null);
@@ -23,9 +22,9 @@ public class Chess {
         board.setSize(845,845);
         window.add(board);
 
-        white = new Player("White", true);
-        black = new Player("Black", false);
-        player = white;
+        w = new Player("w", true);
+        b = new Player("b", false);
+        player = w;
 
         initializeSquares();
         initializePawns(1);
@@ -41,14 +40,14 @@ public class Chess {
     }
 
     public void swapTurn(){
-        if(white.isTurn()){
-            white.setTurn(false);
-            black.setTurn(true);
-            player = black;
+        if(w.isTurn()){
+            w.setTurn(false);
+            b.setTurn(true);
+            player = b;
         }else{
-            black.setTurn(false);
-            white.setTurn(true);
-            player = white;
+            b.setTurn(false);
+            w.setTurn(true);
+            player = w;
         }
     }
 

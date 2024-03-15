@@ -1,12 +1,10 @@
-abstract class Piece {
-    protected String name;
-    protected Square square;
-    public Piece(String name){
-        this.name = name;
-    }
+import javax.swing.*;
 
-    public String getName() {
-        return name;
+abstract class Piece {
+    protected Square square;
+    private ImageIcon icon;
+    public Piece(String playerName, String name){
+        icon = new ImageIcon("Images/"+ playerName + "_" + name + ".png");
     }
 
     public Square getSquare() {
@@ -18,6 +16,6 @@ abstract class Piece {
     }
 
     public void update(){
-        square.setText(name);
+        square.setIcon(icon);
     }
 }

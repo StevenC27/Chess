@@ -1,5 +1,5 @@
 public class Pawn extends Piece{
-    public Pawn(String name) {
-        super(name);
+    public Pawn(String playerName, String name) {
+        super(playerName, name);
     }
 }
