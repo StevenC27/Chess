@@ -1,10 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Chess {
     private JFrame window;
     private JPanel board;
     private Square[][] squares = new Square[8][8];
+    private Player player;
+    private Player white;
+    private Player black;
 
     public Chess(){
         window = new JFrame("Chess");
@@ -18,20 +23,63 @@ public class Chess {
         board.setSize(845,845);
         window.add(board);
 
-        Color light = new Color(232, 235, 239);
-        Color dark = new Color(125, 135, 150);
-        for(int i = 7; i >=0; i--){
-            for(int j = 0; j <= 7; j++){
-                if((i%2 == 0) && (j%2 == 0) || (i%2 == 1) && (j%2 == 1)){
-                    squares[i][j] = new Square(light);
-                }else{
-                    squares[i][j] = new Square(dark);
-                }
-                board.add(squares[i][j]);
-            }
-        }
+        white = new Player("White", true);
+        black = new Player("Black", false);
+        player = white;
+
+        initializeSquares();
+        initializePieces();
+
 
         window.setVisible(true);
         board.setVisible(true);
+    }
+
+    public void swapTurn(){
+        if(white.isTurn()){
+            white.setTurn(false);
+            black.setTurn(true);
+            player = black;
+        }else{
+            black.setTurn(false);
+            white.setTurn(true);
+            player = white;
+        }
+    }
+
+    public void initializeSquares(){
+        Color light = new Color(232, 235, 239);
+        Color dark = new Color(125, 135, 150);
+        Color colour;
+        for(int i = 7; i >=0; i--){
+            for(int j = 0; j <= 7; j++){
+                if((i%2 == 0) && (j%2 == 0) || (i%2 == 1) && (j%2 == 1)){
+                    colour = light;
+                }else{
+                    colour = dark;
+                }
+                squares[i][j] = new Square(i,j,colour);
+                Square square = squares[i][j];
+                board.add(square);
+                /*square.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                    }
+                });*/
+            }
+        }
+    }
+
+    public void initializePieces(){
+        Piece[] pieces = white.getPawns();
+        for(int i = 0; i <= 7; i++){
+            squares[1][i].setPiece(pieces[i]);
+        }
+
+        pieces = black.getPawns();
+        for(int i = 0; i <= 7; i++){
+            squares[6][i].setPiece(pieces[i]);
+        }
     }
 }
