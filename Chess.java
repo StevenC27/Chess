@@ -28,7 +28,12 @@ public class Chess {
         player = white;
 
         initializeSquares();
-        initializePieces();
+        initializePawns(1);
+        initializeSpecialPieces(0);
+
+        swapTurn();
+        initializePawns(6);
+        initializeSpecialPieces(7);
 
 
         window.setVisible(true);
@@ -61,25 +66,41 @@ public class Chess {
                 squares[i][j] = new Square(i,j,colour);
                 Square square = squares[i][j];
                 board.add(square);
-                /*square.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-
-                    }
-                });*/
             }
         }
     }
 
-    public void initializePieces(){
-        Piece[] pieces = white.getPawns();
+    public void initializePawns(int row){
+        Pawn[] pawns = player.getPawns();
         for(int i = 0; i <= 7; i++){
-            squares[1][i].setPiece(pieces[i]);
+            pawns[i].setSquare(squares[row][i]);
+            pawns[i].update();
         }
+    }
 
-        pieces = black.getPawns();
-        for(int i = 0; i <= 7; i++){
-            squares[6][i].setPiece(pieces[i]);
-        }
+    public void initializeSpecialPieces(int row){
+        Rook[] rooks = player.getRooks();
+        rooks[0].setSquare(squares[row][0]);
+        rooks[1].setSquare(squares[row][7]);
+        rooks[0].update();
+        rooks[1].update();
+
+        Knight[] knights = player.getKnights();
+        knights[0].setSquare(squares[row][1]);
+        knights[1].setSquare(squares[row][6]);
+        knights[0].update();
+        knights[1].update();
+
+        Bishop[] bishops = player.getBishops();
+        bishops[0].setSquare(squares[row][2]);
+        bishops[1].setSquare(squares[row][5]);
+        bishops[0].update();
+        bishops[1].update();
+
+        player.getQueen().setSquare(squares[row][3]);
+        player.getQueen().update();
+        player.getKing().setSquare(squares[row][4]);
+        player.getKing().update();
+
     }
 }

@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 public class Square extends JButton{
     private int row;
     private int column;
-    private Piece piece;
     public Square(int row, int column, Color colour){
         setSize(100,100);
         setBackground(colour);
@@ -23,8 +22,4 @@ public class Square extends JButton{
         return column;
     }
 
-    public void setPiece(Piece piece) {
-        this.piece = piece;
-        setText(piece.getName());
-    }
 }
